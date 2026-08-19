@@ -1,0 +1,46 @@
+generator client {
+  provider = "prisma-client-js"
+}
+
+datasource db {
+  provider = "postgresql"
+}
+
+model Empresa {
+  id        String     @id @default(uuid())
+  nombre    String
+  icono     String
+  tarjetas  Tarjeta[]
+  servicios Servicio[]
+}
+
+model Tarjeta {
+  id          String   @id @default(uuid())
+  nombre      String
+  monto       Float
+  vencimiento String
+  empresa     Empresa  @relation(fields: [empresaId], references: [id])
+  empresaId   String
+  cuotas      Cuota[]
+}
+
+model Cuota {
+  id          String  @id @default(uuid())
+  nombre      String
+  cuotaActual Int
+  cuotaBase   Int
+  cuotaTotal  Int
+  monto       Float
+  fechaCarga  String
+  tarjeta     Tarjeta @relation(fields: [tarjetaId], references: [id])
+  tarjetaId   String
+}
+
+model Servicio {
+  id          String  @id @default(uuid())
+  nombre      String
+  monto       Float
+  vencimiento String
+  empresa     Empresa @relation(fields: [empresaId], references: [id])
+  empresaId   String
+}
