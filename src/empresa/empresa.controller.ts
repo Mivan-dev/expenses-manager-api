@@ -28,7 +28,7 @@ export class EmpresaController {
 
     @Delete(':id')
     delete(@Param('id') id: string){
-        this.empresaService.delete(id)
+       return this.empresaService.delete(id)
     }
 }
 
