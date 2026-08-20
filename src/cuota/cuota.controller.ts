@@ -1,4 +1,53 @@
-import { Controller } from '@nestjs/common';
+import {
+  Body,
+  Controller,
+  Delete,
+  Get,
+  Param,
+  Patch,
+  Post,
+} from '@nestjs/common';
+import { CuotaService } from './cuota.service';
 
 @Controller('cuota')
-export class CuotaController {}
+export class CuotaController {
+  constructor(private cuotaService: CuotaService) {}
+
+  @Post()
+  create(
+    @Body()
+    data: {
+      nombre: string;
+      cuotaActual: number;
+      cuotaBase: number;
+      cuotaTotal: number;
+      monto: number;
+      fechaCarga: string;
+      tarjetaId: string;
+    },
+  ) {
+    return this.cuotaService.create(data);
+  }
+
+  @Patch(':id')
+  update(
+    @Param('id') id: string,
+    @Body()
+    data: {
+      nombre: string;
+      cuotaActual: number;
+      cuotaBase: number;
+      cuotaTotal: number;
+      monto: number;
+      fechaCarga: string;
+      tarjetaId: string;
+    },
+  ){
+    return this.cuotaService.update(id, data)
+  }
+
+  @Delete(':id')
+  delete(@Param('id') id: string){
+    return this.cuotaService.delete(id)
+  }
+}
