@@ -48,6 +48,6 @@ model Servicio {
 model Usuario {
   id          String @id @default(uuid())
   nombre      String
-  email       String
+  email       String @unique
   password    String
 }
