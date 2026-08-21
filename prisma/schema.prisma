@@ -15,11 +15,11 @@ model Empresa {
 }
 
 model Tarjeta {
-  id          String   @id @default(uuid())
+  id          String  @id @default(uuid())
   nombre      String
   monto       Float
   vencimiento String
-  empresa     Empresa  @relation(fields: [empresaId], references: [id])
+  empresa     Empresa @relation(fields: [empresaId], references: [id])
   empresaId   String
   cuotas      Cuota[]
 }
@@ -43,4 +43,11 @@ model Servicio {
   vencimiento String
   empresa     Empresa @relation(fields: [empresaId], references: [id])
   empresaId   String
+}
+
+model Usuario {
+  id          String @id @default(uuid())
+  nombre      String
+  email       String
+  password    String
 }
