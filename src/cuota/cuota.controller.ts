@@ -6,9 +6,12 @@ import {
   Param,
   Patch,
   Post,
+  UseGuards,
 } from '@nestjs/common';
 import { CuotaService } from './cuota.service';
+import { JwtGuard } from 'src/auth/jwt/jwt.guard';
 
+@UseGuards(JwtGuard)
 @Controller('cuota')
 export class CuotaController {
   constructor(private cuotaService: CuotaService) {}
