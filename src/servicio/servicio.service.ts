@@ -32,10 +32,10 @@ export class ServicioService {
       monto: number;
       vencimiento: string;
       empresaId: string;
-      etiqueta1?: EtiquetaCredencial;
-      valor1?: string;
-      etiqueta2?: EtiquetaCredencial;
-      valor2?: string;
+      etiqueta1?: EtiquetaCredencial | null;
+      valor1?: string | null;
+      etiqueta2?: EtiquetaCredencial | null;
+      valor2?: string | null;
     },
   ) {
     return this.prisma.servicio.update({
