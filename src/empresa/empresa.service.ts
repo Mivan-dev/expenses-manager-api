@@ -15,11 +15,11 @@ export class EmpresaService {
         });
     }
 
-    create(data: {nombre: string, icono: string}){
+    create(data: {nombre: string, icono: string, url: string}){
         return this.prisma.empresa.create({data});
     }
 
-    update(id: string, data: {nombre: string, icono: string}){
+    update(id: string, data: {nombre: string, icono: string, url: string}){
         return this.prisma.empresa.update({
             where: {id},
             data

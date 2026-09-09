@@ -18,13 +18,13 @@ export class EmpresaController {
     }
 
     @Post()
-    create(@Body() data: {nombre: string, icono: string}){
+    create(@Body() data: {nombre: string, icono: string, url: string}){
         return this.empresaService.create(data);
     }
     
 
     @Patch(':id')
-    update(@Param('id') id: string, @Body() data: {nombre: string, icono: string}){
+    update(@Param('id') id: string, @Body() data: {nombre: string, icono: string, url: string}){
         return this.empresaService.update(id, data);
     }
 
