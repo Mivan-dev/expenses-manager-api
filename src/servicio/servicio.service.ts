@@ -1,4 +1,5 @@
 import { Injectable } from '@nestjs/common';
+import { EtiquetaCredencial } from '@prisma/client';
 import { PrismaService } from 'src/prisma/prisma.service';
 
 @Injectable()
@@ -31,6 +32,10 @@ export class ServicioService {
       monto: number;
       vencimiento: string;
       empresaId: string;
+      etiqueta1?: EtiquetaCredencial;
+      valor1?: string;
+      etiqueta2?: EtiquetaCredencial;
+      valor2?: string;
     },
   ) {
     return this.prisma.servicio.update({
