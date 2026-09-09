@@ -26,7 +26,8 @@ export class TarjetaService {
     update(id: string, data: {nombre: string, monto: number, vencimiento: string, empresaId: string}){
         return this.prisma.tarjeta.update({
             where: { id },
-            data
+            data,
+            include: { cuotas: true }
         })
     }
 
