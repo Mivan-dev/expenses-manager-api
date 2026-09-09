@@ -5,8 +5,10 @@ import { PrismaService } from 'src/prisma/prisma.service';
 export class ServicioService {
   constructor(private prisma: PrismaService) {}
 
-  findAll() {
-    return this.prisma.servicio.findMany();
+  findAll(usuarioId: string) {
+    return this.prisma.servicio.findMany({
+      where: {usuarioId}
+    });
   }
   findOne(id: string) {
     return this.prisma.servicio.findUnique({
@@ -18,6 +20,7 @@ export class ServicioService {
     monto: number;
     vencimiento: string;
     empresaId: string;
+    usuarioId: string;
   }) {
     return this.prisma.servicio.create({ data });
   }
