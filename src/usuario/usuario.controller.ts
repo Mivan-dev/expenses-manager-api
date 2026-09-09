@@ -1,4 +1,4 @@
-import { Body, Controller, Post } from '@nestjs/common';
+import { Body, Controller, Delete, Param, Post } from '@nestjs/common';
 import { UsuarioService } from './usuario.service';
 
 @Controller('usuario')
@@ -9,4 +9,11 @@ export class UsuarioController {
     create(@Body() data: {nombre: string; email: string; password: string}){
         return this.usuarioService.create(data)
     }
+
+    // METODO PARA BORRAR USUARIO - SOLO HABILITAR PARA BORRAR Y LUEGO DESABILITAR.
+    // SE CREARA UN USUARIO ADMIN PARA ESTAS OPERACIONES EN UN FUTURO
+    // @Delete(':id')
+    // delete(@Param('id') id: string){
+    //     return this.usuarioService.delete(id);
+    // }
 }

@@ -18,4 +18,12 @@ export class UsuarioService {
       where: { email },
     });
   }
+
+  // METODO PARA BORRAR USUARIO - SOLO HABILITAR PARA BORRAR Y LUEGO DESABILITAR.
+  // SE CREARA UN USUARIO ADMIN PARA ESTAS OPERACIONES EN UN FUTURO
+  // delete(id: string){
+  //   return this.prisma.usuario.delete({
+  //     where: { id },
+  //   })
+  // }
 }
