@@ -5,8 +5,9 @@ import { PrismaService } from 'src/prisma/prisma.service';
 export class TarjetaService {
     constructor(private prisma: PrismaService){}
 
-    findAll(){
+    findAll(usuarioId: string){
         return this.prisma.tarjeta.findMany({
+            where: {usuarioId},
             include: { cuotas: true }
         })
     }
@@ -18,7 +19,7 @@ export class TarjetaService {
         })
     }
 
-    create(data: {nombre: string, monto: number, vencimiento: string, empresaId: string}){
+    create(data: {nombre: string, monto: number, vencimiento: string, empresaId: string, usuarioId: string}){
         return this.prisma.tarjeta.create({data})
     }
 
