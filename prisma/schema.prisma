@@ -10,6 +10,7 @@ model Empresa {
   id        String     @id @default(uuid())
   nombre    String
   icono     String
+  url       String
   tarjetas  Tarjeta[]
   servicios Servicio[]
 }
@@ -22,6 +23,8 @@ model Tarjeta {
   empresa     Empresa @relation(fields: [empresaId], references: [id])
   empresaId   String
   cuotas      Cuota[]
+  usuario     Usuario @relation(fields: [usuarioId], references: [id])
+  usuarioId   String
 }
 
 model Cuota {
@@ -43,6 +46,12 @@ model Servicio {
   vencimiento String
   empresa     Empresa @relation(fields: [empresaId], references: [id])
   empresaId   String
+  usuario     Usuario @relation(fields: [usuarioId], references: [id])
+  usuarioId   String
+  etiqueta1   EtiquetaCredencial?
+  valor1      String?
+  etiqueta2   EtiquetaCredencial?
+  valor2      String?
 }
 
 model Usuario {
@@ -50,4 +59,15 @@ model Usuario {
   nombre      String
   email       String @unique
   password    String
+  tarjetas  Tarjeta[]
+  servicios Servicio[]
+}
+
+enum EtiquetaCredencial {
+  NUMERO_CLIENTE
+  NUMERO_CONTRATO
+  NUMERO_CUENTA
+  UF
+  NUMERO
+  IDENTIFICADOR
 }
