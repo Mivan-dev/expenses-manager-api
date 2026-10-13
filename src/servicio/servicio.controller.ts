@@ -12,7 +12,8 @@ import {
 } from '@nestjs/common';
 import { ServicioService } from './servicio.service';
 import { JwtGuard } from 'src/auth/jwt/jwt.guard';
-import { EtiquetaCredencial } from '@prisma/client';
+import { ServicioDto } from './dto/servicio.dto';
+import { UpdateServicioDto } from './dto/update-servicio.dto';
 
 @UseGuards(JwtGuard)
 @Controller('servicio')
@@ -32,12 +33,7 @@ export class ServicioController {
   @Post()
   create(
     @Body()
-    data: {
-      nombre: string;
-      monto: number;
-      vencimiento: string;
-      empresaId: string;
-    },
+    data: ServicioDto,
     @Req() req: { user: { id: string; email: string } },
   ) {
     const dataCompleta = { ...data, usuarioId: req.user.id };
@@ -48,16 +44,7 @@ export class ServicioController {
   async update(
     @Param('id') id: string,
     @Body()
-    data: {
-      nombre: string;
-      monto: number;
-      vencimiento: string;
-      empresaId: string;
-      etiqueta1?: EtiquetaCredencial;
-      valor1?: string;
-      etiqueta2?: EtiquetaCredencial;
-      valor2?: string;
-    },
+    data: UpdateServicioDto,
     @Req() req: { user: { id: string; email: string } },
   ) {
     const servicio = await this.servicioService.findOne(id);

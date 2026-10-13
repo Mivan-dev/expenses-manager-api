@@ -40,4 +40,15 @@ export class CuotaService {
       where: { id },
     });
   }
+
+  findTarjeta(id: string) {
+    return this.prisma.tarjeta.findUnique({ where: { id } });
+  }
+
+  findOneConTarjeta(id: string) {
+    return this.prisma.cuota.findUnique({
+      where: { id },
+      include: { tarjeta: true },
+    });
+  }
 }

@@ -12,6 +12,7 @@ import {
 } from '@nestjs/common';
 import { TarjetaService } from './tarjeta.service';
 import { JwtGuard } from 'src/auth/jwt/jwt.guard';
+import { TarjetaDto } from './dto/tarjeta.dto';
 
 @UseGuards(JwtGuard)
 @Controller('tarjeta')
@@ -31,12 +32,7 @@ export class TarjetaController {
   @Post()
   create(
     @Body()
-    data: {
-      nombre: string;
-      monto: number;
-      vencimiento: string;
-      empresaId: string;
-    },
+    data: TarjetaDto,
     @Req() req: { user: { id: string; email: string } },
   ) {
     const dataCompleta = { ...data, usuarioId: req.user.id };
@@ -47,12 +43,7 @@ export class TarjetaController {
   async update(
     @Param('id') id: string,
     @Body()
-    data: {
-      nombre: string;
-      monto: number;
-      vencimiento: string;
-      empresaId: string;
-    },
+    data: TarjetaDto,
     @Req() req: { user: { id: string; email: string } },
   ) {
     const tarjeta = await this.tarjetaService.findOne(id);
