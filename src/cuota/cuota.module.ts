@@ -6,6 +6,6 @@ import { PrismaModule } from 'src/prisma/prisma.module';
 @Module({
   imports: [PrismaModule],
   providers: [CuotaService],
-  controllers: [CuotaController]
+  controllers: [CuotaController],
 })
 export class CuotaModule {}

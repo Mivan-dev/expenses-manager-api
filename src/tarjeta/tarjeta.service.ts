@@ -3,37 +3,51 @@ import { PrismaService } from 'src/prisma/prisma.service';
 
 @Injectable()
 export class TarjetaService {
-    constructor(private prisma: PrismaService){}
+  constructor(private prisma: PrismaService) {}
 
-    findAll(usuarioId: string){
-        return this.prisma.tarjeta.findMany({
-            where: {usuarioId},
-            include: { cuotas: true }
-        })
-    }
+  findAll(usuarioId: string) {
+    return this.prisma.tarjeta.findMany({
+      where: { usuarioId },
+      include: { cuotas: true },
+    });
+  }
 
-    findOne(id: string){
-        return this.prisma.tarjeta.findUnique({
-            where: { id },
-            include: { cuotas: true }
-        })
-    }
+  findOne(id: string) {
+    return this.prisma.tarjeta.findUnique({
+      where: { id },
+      include: { cuotas: true },
+    });
+  }
 
-    create(data: {nombre: string, monto: number, vencimiento: string, empresaId: string, usuarioId: string}){
-        return this.prisma.tarjeta.create({data})
-    }
+  create(data: {
+    nombre: string;
+    monto: number;
+    vencimiento: string;
+    empresaId: string;
+    usuarioId: string;
+  }) {
+    return this.prisma.tarjeta.create({ data });
+  }
 
-    update(id: string, data: {nombre: string, monto: number, vencimiento: string, empresaId: string}){
-        return this.prisma.tarjeta.update({
-            where: { id },
-            data,
-            include: { cuotas: true }
-        })
-    }
+  update(
+    id: string,
+    data: {
+      nombre: string;
+      monto: number;
+      vencimiento: string;
+      empresaId: string;
+    },
+  ) {
+    return this.prisma.tarjeta.update({
+      where: { id },
+      data,
+      include: { cuotas: true },
+    });
+  }
 
-    delete(id: string){
-        return this.prisma.tarjeta.delete({
-            where: { id }
-        })
-    }
+  delete(id: string) {
+    return this.prisma.tarjeta.delete({
+      where: { id },
+    });
+  }
 }

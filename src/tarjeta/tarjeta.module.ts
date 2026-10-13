@@ -6,6 +6,6 @@ import { PrismaModule } from 'src/prisma/prisma.module';
 @Module({
   imports: [PrismaModule],
   providers: [TarjetaService],
-  controllers: [TarjetaController]
+  controllers: [TarjetaController],
 })
 export class TarjetaModule {}

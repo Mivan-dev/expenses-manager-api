@@ -45,12 +45,12 @@ export class CuotaController {
       fechaCarga: string;
       tarjetaId: string;
     },
-  ){
-    return this.cuotaService.update(id, data)
+  ) {
+    return this.cuotaService.update(id, data);
   }
 
   @Delete(':id')
-  delete(@Param('id') id: string){
-    return this.cuotaService.delete(id)
+  delete(@Param('id') id: string) {
+    return this.cuotaService.delete(id);
   }
 }

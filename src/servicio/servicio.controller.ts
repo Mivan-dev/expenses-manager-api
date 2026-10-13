@@ -56,7 +56,7 @@ export class ServicioController {
       etiqueta1?: EtiquetaCredencial;
       valor1?: string;
       etiqueta2?: EtiquetaCredencial;
-      valor2?: string
+      valor2?: string;
     },
     @Req() req: { user: { id: string; email: string } },
   ) {
