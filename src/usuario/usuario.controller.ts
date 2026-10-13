@@ -1,4 +1,4 @@
-import { Body, Controller, Post } from '@nestjs/common';
+import { Body, Controller, ForbiddenException, Post } from '@nestjs/common';
 import { UsuarioService } from './usuario.service';
 import { CreateUsuarioDto } from './dto/create-usuario.dto';
 
@@ -8,6 +8,11 @@ export class UsuarioController {
 
   @Post()
   create(@Body() data: CreateUsuarioDto) {
+    if (process.env.REGISTRO_HABILITADO !== 'true') {
+      throw new ForbiddenException(
+        'El registro de usuarios está deshabilitado',
+      );
+    }
     return this.usuarioService.create(data);
   }
 
