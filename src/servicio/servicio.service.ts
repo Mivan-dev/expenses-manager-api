@@ -8,7 +8,7 @@ export class ServicioService {
 
   findAll(usuarioId: string) {
     return this.prisma.servicio.findMany({
-      where: {usuarioId}
+      where: { usuarioId },
     });
   }
   findOne(id: string) {

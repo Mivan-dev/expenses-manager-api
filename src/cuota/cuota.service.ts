@@ -28,16 +28,16 @@ export class CuotaService {
       fechaCarga: string;
       tarjetaId: string;
     },
-  ){
+  ) {
     return this.prisma.cuota.update({
-        where: { id },
-        data
-    })
+      where: { id },
+      data,
+    });
   }
 
   delete(id: string) {
     return this.prisma.cuota.delete({
-        where: { id }
-    })
+      where: { id },
+    });
   }
 }
