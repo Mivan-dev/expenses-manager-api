@@ -1,8 +1,18 @@
 import { EtiquetaCredencial } from '@prisma/client';
-import { IsEnum, IsOptional, IsString, MaxLength } from 'class-validator';
+import {
+  IsEnum,
+  IsOptional,
+  IsString,
+  IsBoolean,
+  MaxLength,
+} from 'class-validator';
 import { ServicioDto } from './servicio.dto';
 
 export class UpdateServicioDto extends ServicioDto {
+  @IsOptional()
+  @IsBoolean({ message: 'pagado debe ser verdadero o falso' })
+  pagado?: boolean;
+
   @IsOptional()
   @IsEnum(EtiquetaCredencial, { message: 'La etiqueta 1 no es válida' })
   etiqueta1?: EtiquetaCredencial | null;

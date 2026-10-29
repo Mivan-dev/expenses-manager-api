@@ -1,6 +1,6 @@
 import { Injectable } from '@nestjs/common';
-import { EtiquetaCredencial } from '@prisma/client';
 import { PrismaService } from 'src/prisma/prisma.service';
+import { UpdateServicioDto } from './dto/update-servicio.dto';
 
 @Injectable()
 export class ServicioService {
@@ -25,19 +25,7 @@ export class ServicioService {
   }) {
     return this.prisma.servicio.create({ data });
   }
-  update(
-    id: string,
-    data: {
-      nombre: string;
-      monto: number;
-      vencimiento: string;
-      empresaId: string;
-      etiqueta1?: EtiquetaCredencial | null;
-      valor1?: string | null;
-      etiqueta2?: EtiquetaCredencial | null;
-      valor2?: string | null;
-    },
-  ) {
+  update(id: string, data: UpdateServicioDto) {
     return this.prisma.servicio.update({
       where: { id },
       data,
