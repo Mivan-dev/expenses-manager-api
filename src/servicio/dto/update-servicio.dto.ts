@@ -7,8 +7,9 @@ import {
   MaxLength,
 } from 'class-validator';
 import { ServicioDto } from './servicio.dto';
+import { PartialType } from '@nestjs/mapped-types';
 
-export class UpdateServicioDto extends ServicioDto {
+export class UpdateServicioDto extends PartialType(ServicioDto) {
   @IsOptional()
   @IsBoolean({ message: 'pagado debe ser verdadero o falso' })
   pagado?: boolean;
