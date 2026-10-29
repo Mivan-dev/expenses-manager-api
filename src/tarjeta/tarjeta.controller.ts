@@ -13,6 +13,7 @@ import {
 import { TarjetaService } from './tarjeta.service';
 import { JwtGuard } from 'src/auth/jwt/jwt.guard';
 import { TarjetaDto } from './dto/tarjeta.dto';
+import { UpdateTarjetaDto } from './dto/update-tarjeta.dto';
 
 @UseGuards(JwtGuard)
 @Controller('tarjeta')
@@ -43,7 +44,7 @@ export class TarjetaController {
   async update(
     @Param('id') id: string,
     @Body()
-    data: TarjetaDto,
+    data: UpdateTarjetaDto,
     @Req() req: { user: { id: string; email: string } },
   ) {
     const tarjeta = await this.tarjetaService.findOne(id);
