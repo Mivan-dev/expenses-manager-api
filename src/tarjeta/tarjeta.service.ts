@@ -1,5 +1,6 @@
 import { Injectable } from '@nestjs/common';
 import { PrismaService } from 'src/prisma/prisma.service';
+import { UpdateTarjetaDto } from './dto/update-tarjeta.dto';
 
 @Injectable()
 export class TarjetaService {
@@ -29,15 +30,7 @@ export class TarjetaService {
     return this.prisma.tarjeta.create({ data });
   }
 
-  update(
-    id: string,
-    data: {
-      nombre: string;
-      monto: number;
-      vencimiento: string;
-      empresaId: string;
-    },
-  ) {
+  update(id: string, data: UpdateTarjetaDto) {
     return this.prisma.tarjeta.update({
       where: { id },
       data,
